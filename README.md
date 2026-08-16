@@ -74,6 +74,109 @@ models/
 
 Models should primarily describe database structure and relationships rather than contain application business logic.
 
+
+### `migrations`
+
+Contains the database migration files generated and managed by Flask-Migrate and Alembic.
+
+Database migrations provide version control for changes to the application's database schema. Rather than manually modifying the database structure, changes to SQLAlchemy models can be detected and recorded as migration scripts.
+
+The migration system allows database schema changes to be:
+
+- Created from changes to SQLAlchemy models
+- Applied to the database
+- Reverted when required
+- Tracked through migration history
+- Applied consistently across development, testing and production environments
+
+The `migrations` directory is created using:
+
+```bash
+flask db init
+```
+
+Once initialised, the directory contains the Alembic configuration and migration environment.
+
+```text
+migrations/
+├── versions/
+│   └── <migration files>
+├── alembic.ini
+├── env.py
+├── README
+└── script.py.mako
+```
+
+The important parts are:
+- `versions/` — Contains the generated migration scripts.
+- `alembic.ini` — Alembic configuration.
+- `env.py` — Configures how Alembic interacts with the Flask application and SQLAlchemy metadata.
+- `script.py.mako` — Template used when generating new migration scripts.
+
+### Creating a Migration
+
+After making changes to the SQLAlchemy models, create a new migration:
+
+```bash
+flask db migrate -m "Describe the database changes"
+```
+
+The migration should be reviewed before being applied, particularly when it contains changes that could result in data loss.
+
+### Applying Migrations
+
+Apply pending migrations to the database using:
+
+```bash
+flask db upgrade
+```
+
+This brings the database schema up to the latest migration version.
+
+### Rolling Back a Migration
+
+To revert the most recently applied migration:
+
+```bash
+flask db downgrade
+```
+
+Migration rollback should be used with care, particularly in environments containing production data.
+
+### Optional: View migration history
+
+To display the available migration history:
+
+```bash
+flask db history
+```
+
+You can also check the current database migration:
+
+```bash
+flask db current
+```
+
+### Migration Workflow
+
+The recommended workflow when changing the database schema is:
+
+1. Modify the SQLAlchemy model.
+1. Generate a new migration.
+1. Review the generated migration script.
+1. Test the migration against the development database.
+1. Commit the migration script to source control.
+1. Deploy the application and migration to the target environment.
+1. Apply the migration to the target database.
+
+Migration files should be committed to the repository so that the database schema can be reproduced consistently across environments.
+
+**Placeholder:** Add any project-specific migration conventions or deployment requirements here.
+
+
+**`migrations/` should be committed to Git**, including the files under `migrations/versions/`. The database itself should not be committed.
+
+
 ### `app/repositories`
 
 Contains database access and query logic.
