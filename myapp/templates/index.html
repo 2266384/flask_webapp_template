@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Home - My Flask App{% endblock %}
+
+{% block content %}
+
+<!--
+    Displays a card indicating the database connection status
+-->
+
+<div class="card">
+    <h2>Welcome</h2>
+
+    <p>
+        Flask application is running successfully.
+    </p>
+
+    {% if database_connected %}
+        <div class="status success">
+            <strong>Database connection successful.</strong>
+            <p>
+                The application successfully connected to the database.
+            </p>
+        </div>
+    {% else %}
+        <div class="status error">
+            <strong>Database connection failed.</strong>
+            
+            {% if database_error %}
+                <p>{{database_error}}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
