@@ -1,7 +1,7 @@
 from flask import Flask
 
 from .config import Config
-from .extensions import db
+from .extensions import db, migrate
 
 
 
@@ -11,9 +11,14 @@ def create_app(config_class=Config):
     
     app.config.from_object(config_class)
 
+    # Initialise extensions
     db.init_app(app)
+    migrate.init_app(app, db)
 
-    # Registers the Customers Blueprint Route with the app
+    # Import models so they are registered with db.metadata
+    from . import models
+
+    # Registers blueprints
     from .routes.main import main_bp
     app.register_blueprint(main_bp)
 
