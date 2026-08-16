@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Flask App{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Page heading -->
+    <div class="row mb-4">
+        <div class="col">
+            <h2>Welcome</h2>
+            <p class="lead">
+                Flask application is running successfully.
+            </p>
+        </div>
+    </div>
+
+    <!-- Database connection status -->
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header">
+                    Database Connection
+                </div>
+
+                <div class="card-body">
+
+                    {% if database_connected %}
+
+                        <div class="alert alert-success" role="alert">
+                            <h5 class="alert-heading">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Database connection successful
+                            </h5>
+
+                            <p class="mb-0">
+                                The application successfully connected
+                                to the database.
+                            </p>
+                        </div>
+
+                    {% else %}
+
+                        <div class="alert alert-danger" role="alert">
+                            <h5 class="alert-heading">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                Database connection failed
+                            </h5>
+
+                            {% if database_error %}
+                                <hr>
+                                <p class="mb-0">
+                                    {{ database_error }}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from myapp.extensions import db
+from app.extensions import db
 
 
 class Customer(db.Model):

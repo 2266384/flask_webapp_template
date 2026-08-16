@@ -1,5 +1,5 @@
-from myapp.models import Customer
-from myapp.extensions import db
+from app.models import Customer
+from app.extensions import db
 
 def get_customer(customer_id):
     return db.session.get(Customer, customer_id)

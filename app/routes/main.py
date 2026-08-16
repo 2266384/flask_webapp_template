@@ -4,7 +4,7 @@ from datetime import datetime
 from flask import Blueprint, render_template
 from sqlalchemy import text
 
-from myapp.extensions import db
+from app.extensions import db
 
 
 logger = logging.getLogger(__name__)

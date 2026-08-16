@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}Flask App{% endblock %}</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-icons/bootstrap-icons.min.css') }}">
+
+        <!-- Application CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+
+        {% block head %}{% endblock %}
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container-fluid pageheader">
+                <div class="row">
+                    <div class="col">
+                        <h1>Flask App Template</h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="container-fluid">
+                <p>
+                    &copy; {{ current_year }} Flask App
+                </p>
+            </div>
+        </footer>
+
+        <!-- Bootstrap JavaScript -->
+        <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+        {% block scripts %}{% endblock %}
+
+    </body>
+</html>

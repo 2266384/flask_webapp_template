@@ -1,4 +1,4 @@
-from myapp.models import Customer
+from app.models import Customer
 
 
 def find_customers_by_postcode(postcode):

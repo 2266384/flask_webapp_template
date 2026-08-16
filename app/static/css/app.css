@@ -34,28 +34,6 @@ main {
     padding: 0 1rem;
 }
 
-.card {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.status {
-    padding: 1rem;
-    border-radius: 6px;
-    margin-top: 1rem;
-}
-
-.status.success {
-    background: #e8f5e9;
-    color: #2e7d32;
-}
-
-.status.error {
-    background: #ffebee;
-    color: #c62828;
-}
 
 footer {
     text-align: center;
