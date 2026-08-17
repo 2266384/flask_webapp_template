@@ -24,6 +24,10 @@ The template provides a clean starting point for new Flask projects while keepin
 flask_webapp_template/
 │
 ├── app/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── extensions.py
+│   │
 │   ├── models/
 │   │   └── ...
 │   │
@@ -174,8 +178,6 @@ The recommended workflow when changing the database schema is:
 1. Apply the migration to the target database.
 
 Migration files should be committed to the repository so that the database schema can be reproduced consistently across environments.
-
-**Placeholder:** Add any project-specific migration conventions or deployment requirements here.
 
 
 **`migrations/` should be committed to Git**, including the files under `migrations/versions/`. The database itself should not be committed.
