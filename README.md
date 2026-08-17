@@ -50,6 +50,10 @@ flask_webapp_template/
 │   └── utils/
 │       └── ...
 │
+├── migrations/
+│   └── versions/
+│       └── ...
+│
 ├── .env.example
 ├── .gitignore
 ├── requirements.txt
