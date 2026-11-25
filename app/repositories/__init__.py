@@ -1,2 +1,3 @@
+from .customer_repository import find_customers_by_email
 
-from .customer_repository import Customer_Repository
+__all__ = ["find_customers_by_email"]

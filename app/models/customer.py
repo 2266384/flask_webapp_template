@@ -1,9 +1,12 @@
-from app.extensions import db
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, mapped_column
+
+from app.extensions import Base
 
 
-class Customer(db.Model):
+class Customer(Base):
     __tablename__ = "customer"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
-    email = db.Column(db.String(255), unique=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    email: Mapped[str] = mapped_column(String(255), unique=True)

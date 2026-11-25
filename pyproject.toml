@@ -1,0 +1,56 @@
+[project]
+name = "flask-webapp-template"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic==1.19.1",
+    "blinker==1.9.0",
+    "click==8.4.2",
+    "email-validator>=2.4.0",
+    "flask==3.1.3",
+    "flask-migrate==4.1.0",
+    "flask-sqlalchemy==3.1.1",
+    "itsdangerous==2.2.0",
+    "jinja2==3.1.6",
+    "mako==1.4.1",
+    "markupsafe==3.0.3",
+    "pydantic>=2.14.4",
+    "pyodbc==5.3.0",
+    "python-dotenv==1.2.2",
+    "sqlalchemy==2.0.52",
+    "typing-extensions==4.16.0",
+    "werkzeug==3.1.8",
+]
+
+[dependency-groups]
+# These are the tools used for development
+# These are not required to run
+dev = [
+    "mypy==2.3.1",                              # Type checker - validates types before runtime
+    "pre-commit==4.6.2",                        # Runs pre-commit hooks before running tests
+    "pytest==9.1.1",                            # Test suite
+    "pytest-cov==7.1.0",                        # Test code coverage
+    "ruff==0.16.7",                             # Linter
+    "types-flask-migrate>=4.1.0.20260508",      # Flask migrate library stubs
+]
+
+
+# Configure the tools
+[tool.ruff]
+line-length = 120           # Sets the line length to 120 characters
+
+[tool.ruff.lint]
+extend-select = ["I"]       # Sorts the imports
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+# Choose folders to exclude from type checking
+exclude = ["^migrations/"]         # Exclude Alembic Migrations
+
+
+# Pytest options - sets the tests folder and configures the plugin to measure
+# code coverage and ensure at least 90% of code is tested
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=src --cov-report=term-missing --cov-fail-under=90"

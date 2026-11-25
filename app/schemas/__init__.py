@@ -1,2 +1,7 @@
+from .customer import CustomerCreateSchema, CustomerSchema, CustomerUpdateSchema
 
-from .customer import Customer
+__all__ = [
+    "CustomerCreateSchema",
+    "CustomerSchema",
+    "CustomerUpdateSchema",
+]

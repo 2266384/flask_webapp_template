@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 ### Private function to build the database connection string
 def _build_database_uri() -> str:
     host = os.environ["DB_HOST"]
@@ -12,18 +13,9 @@ def _build_database_uri() -> str:
     database = os.environ["DB_NAME"]
     username = os.environ["DB_USER"]
     password = os.environ["DB_PASSWORD"]
-    driver = os.environ.get(
-        "DB_DRIVER",
-        "ODBC Driver 18 for SQL Server"
-    )
-    encrypt = os.environ.get(
-        "DB_ENCRYPT",
-        "no"
-    )
-    trust_certificate = os.environ.get(
-        "DB_TRUST_SERVER_CERTIFICATE",
-        "no"
-    )
+    driver = os.environ.get("DB_DRIVER", "ODBC Driver 18 for SQL Server")
+    encrypt = os.environ.get("DB_ENCRYPT", "no")
+    trust_certificate = os.environ.get("DB_TRUST_SERVER_CERTIFICATE", "no")
 
     return (
         f"mssql+pyodbc://"
@@ -35,6 +27,7 @@ def _build_database_uri() -> str:
         f"&Encrypt={encrypt}"
         f"&TrustServerCertificate={trust_certificate}"
     )
+
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False

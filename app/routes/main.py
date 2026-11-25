@@ -1,21 +1,20 @@
 import logging
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from flask import Blueprint, render_template
 from sqlalchemy import text
 
 from app.extensions import db
 
-
 logger = logging.getLogger(__name__)
 
 main_bp = Blueprint("main", __name__)
 
 
-
 # Test the database connection
 @main_bp.get("/")
-def index():
+def index() -> str:
     database_connected = False
     database_error = None
 
@@ -32,5 +31,5 @@ def index():
         "index.html",
         database_connected=database_connected,
         database_error=database_error,
-        current_year=datetime.now().year,
+        current_year=datetime.now(ZoneInfo("Europe/London")).year,
     )

@@ -1,15 +1,18 @@
-from app.models import Customer
+from sqlalchemy import select
+
 from app.extensions import db
-
-def get_customer(customer_id):
-    return db.session.get(Customer, customer_id)
+from app.models import Customer
 
 
-def create_customer(name, email):
-    customer = Customer(
-        name=name,
-        email=email
-    )
+def get_customer(customer_id: int) -> Customer | None:
+    """Retrieve a customer by ID"""
+    statement = select(Customer).where(Customer.id == customer_id)
+    return db.session.scalar(statement)
+
+
+def create_customer(name: str, email: str) -> Customer:
+    """Create and persist a new customer"""
+    customer = Customer(name=name, email=email)
 
     db.session.add(customer)
     db.session.commit()
